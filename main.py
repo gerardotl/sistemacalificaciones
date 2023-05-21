@@ -1,18 +1,17 @@
-from tkinter.ttk import Combobox
 from Estudiante import Estudiante
 from Curso import Curso
 import json
 import tkinter as tk
 from tkinter import *
-from tkinter import ttk
 
 from pantallaCurso import agregarEstudiante
 from pantallaEstudiante import agregarCalificacion, agregarCalificaciones
+
 cursos = {}
     
 ventana = tk.Tk()
 ventana.title("Calificaciones")
-ventana.geometry("500x500")
+ventana.geometry("800x600")
 
 barraMenu=Menu(ventana)
 ventana.config(menu=barraMenu,width=300,height=300)
@@ -26,10 +25,8 @@ archivoEstudiante=Menu(barraMenu,tearoff=0)
 barraMenu.add_cascade(label="Archivo",menu=archivoMenu)
 barraMenu.add_cascade(label="Estudiante",menu=archivoEstudiante)
 archivoEstudiante.add_command(label='Agregar Curso',command=lambda:agregarEstudiante(cursos=cursos))
-archivoEstudiante.add_command(label='Agregar Estudiante',command=lambda:agregarCalificacion(cursos=cursos))
-archivoEstudiante.add_command(label='Calcular Promedio')
-archivoEstudiante.add_command(label='Guardar un archivo')
-archivoEstudiante.add_command(label='Leer datos de archivo')
+archivoEstudiante.add_command(label='CRUD Estudiante',command=lambda:agregarCalificacion(pcursos=cursos))
+
 
 ventana.mainloop()
 

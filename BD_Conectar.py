@@ -50,33 +50,36 @@ class BD_Conectar:
         miConexion.commit()
         miConexion.close()
         return listaRegistros
+   
    #LISTAR REGISTROS
     def listarTodos(self):
-        miConexion=sqlite3.connect("PrimerBase.sqlite")
+        miConexion=sqlite3.connect("calificaciones.sqlite")
         cursor=miConexion.cursor()
-        cursor.execute("SELECT* FROM ESTUDIANTE")
+        cursor.execute("SELECT * FROM ESTUDIANTE")
         listaRegistros=cursor.fetchall()
         print("Datos listados")
         miConexion.commit()
         miConexion.close()
         return listaRegistros
+    
     #ACTUALIZAR REGISTRO
     def actualizar(self,nombre,curso, calificacion):
-        id=str(id)
+
         miConexion=sqlite3.connect("calificaciones.sqlite")
         cursor=miConexion.cursor()
-        
-        cursor.execute("UPDATE ESTUDIANTE SET NOMBRE='"+nombre+"',CURSO='"+curso+"',CALIFICACION="+ calificacion + " WHERE NOMBRE =" +nombre )
+        sql ="UPDATE ESTUDIANTE SET NOMBRE = '"+nombre+"', CURSO= '"+curso+"', CALIFICACION= "+ calificacion + " WHERE CURSO = '"  +curso + "' AND  NOMBRE = '" +nombre +"'"
+        cursor.execute(sql)
         print("El registro ha sido actualizas")
         miConexion.commit()
         miConexion.close()
 
     #ELIMAR REGISTRO
-    def eleminar(self,nombre):
-        id=str(id)
-        miConexion=sqlite3.connect("calificaicones.sqlite")
+    def eleminar(self,nombre,curso,calificacion):
+        miConexion=sqlite3.connect("calificaciones.sqlite")
         cursor=miConexion.cursor()
-        cursor.execute("DELETE FROM ESTUDIANTE WHERE NOMBRE="+nombre+"")
+        sql ="DELETE FROM ESTUDIANTE WHERE CURSO = '"  +curso + "' AND  NOMBRE = '" +nombre +"' AND CALIFICACION =" + calificacion
+        cursor.execute(sql)
+        # cursor.execute("DELETE FROM ESTUDIANTE WHERE NOMBRE="+nombre+"")
         print("El registro ha sido eliminado")
         miConexion.commit()
         miConexion.close()
